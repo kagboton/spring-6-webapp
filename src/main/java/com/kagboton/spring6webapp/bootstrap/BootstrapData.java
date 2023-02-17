@@ -2,8 +2,10 @@ package com.kagboton.spring6webapp.bootstrap;
 
 import com.kagboton.spring6webapp.domain.Author;
 import com.kagboton.spring6webapp.domain.Book;
+import com.kagboton.spring6webapp.domain.Publisher;
 import com.kagboton.spring6webapp.repositories.AuthorRepository;
 import com.kagboton.spring6webapp.repositories.BookRepository;
+import com.kagboton.spring6webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,12 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
-    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -44,13 +48,22 @@ public class BootstrapData implements CommandLineRunner {
 
         kilianSaved.getBooks().add(dddSaved);
         totoSaved.getBooks().add(noEJBSaved);
-        
+
         authorRepository.save(kilianSaved);
         authorRepository.save(totoSaved);
+
+        Publisher thePublisher = new Publisher();
+        thePublisher.setPublisherName("Kings Herald");
+        thePublisher.setCity("Books Town");
+
+        publisherRepository.save(thePublisher);
+
+
 
         System.out.println("In Bootstrap");
         System.out.println("Author Count: " + authorRepository.count());
         System.out.println("Book Count: " + bookRepository.count());
+        System.out.println("Publisher Count: " + publisherRepository.count());
 
     }
 }
