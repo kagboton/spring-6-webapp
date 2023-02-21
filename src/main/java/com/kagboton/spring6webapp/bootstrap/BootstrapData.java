@@ -25,7 +25,7 @@ public class BootstrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Author kilian = new Author();
-        kilian.setFistName("Kilian");
+        kilian.setFirstName("Kilian");
         kilian.setLastName("Agboton");
 
         Book ddd = new Book();
@@ -36,7 +36,7 @@ public class BootstrapData implements CommandLineRunner {
         Book dddSaved = bookRepository.save(ddd);
 
         Author toto = new Author();
-        toto.setFistName("Toto");
+        toto.setFirstName("Toto");
         toto.setLastName("Henderson");
 
         Book noEJB = new Book();
